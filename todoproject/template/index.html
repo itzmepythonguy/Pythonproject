@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block body %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo</title>
+    <style>
+    h2 {
+  color: green;
+  text-shadow: 5px 2px 8px #000000;
+  text-align:center;
+
+}
+input{
+ box-shadow: 10px 10px #ffcba4;
+ }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+<h2>Add your tasks</h2>
+<div style="margin-top:2cm"class="container">
+      <div class="row">
+      <div class="col-md-6">
+
+<div class="form-group" >
+
+    <form method="POST">
+        {% csrf_token %}
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+    <input type="text" class="form-control" name="task" placeholder="Enter your Task"><br>
+    <input type="text" class="form-control" name="priority" placeholder="Enter Priority"><br>
+    <input type="date" class="form-control" name="date"><br>
+    <button style="background-color:#ffcba4;color:green;" type="submit" class="form-control" name="add">Add</button>
+<form>
+    </div>
+    </div>
+          <div class="col-md-6">
+              {% for i in set1 %}
+              <div class="card">
+                  <div class="shadow card">
+                  <div class="card-body">
+                      <h5 class="card-title">Task: {{i.name}}</h5>
+                      <p class="card-text">Priority: {{i.priority}}</p>
+                      <p class="card-text">Date: {{i.date}}</p>
+                      <a href="{% url 'todoapp:update' i.id %}" class="btn btn-primary">Update</a>
+                      <a class="btn btn-primary" href="{% url 'todoapp:delete'  i.id %}">Delete</a>
+                  </div>
+                  </div>
+              </div><br><br>
+              {% endfor %}
+          </div>
+
+        </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+{% endblock %}
+</html>
